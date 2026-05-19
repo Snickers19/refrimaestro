@@ -1,5 +1,5 @@
 [build]
-  command = "pip install -r requirements.txt && yes | flet build web"
+  command = "pip install -r requirements.txt && flet publish"
   publish = "build/web"
 
 [build.environment]
