@@ -116,7 +116,6 @@ def MantenimientoView(page: ft.Page):
         border=ft.border.all(1, "#2a2d36"),
         border_radius=12,
         heading_row_color=ACCENT_BG,
-        expand=True,
     )
 
     return ft.Column(

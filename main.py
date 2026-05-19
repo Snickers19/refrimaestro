@@ -52,7 +52,6 @@ def main(page: ft.Page):
                     controls=[view_content],
                     padding=0,
                     bgcolor=BG_COLOR,
-                    scroll=ft.ScrollMode.AUTO,
                 )
             )
         page.update()
