@@ -2,7 +2,10 @@ name: Deploy Flet App to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # Cambia a 'master' si esa es tu rama principal
+    branches: [ main ] # O 'master'
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
