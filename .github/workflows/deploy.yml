@@ -24,7 +24,7 @@ jobs:
           pip install flet
           
       - name: Build Web
-        run: yes | flet build web
+        run: yes | flet build web --base-url /${{ github.event.repository.name }}/
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
