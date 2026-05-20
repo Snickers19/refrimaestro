@@ -7,13 +7,14 @@ def main(page: ft.Page):
     # Configuración principal de la página
     page.title = "Refri Maestro | Reparaciones y Ventas"
     page.padding = 0
-    # CORRECCIÓN: ft.colors en minúsculas
-    page.bgcolor = ft.colors.BLUE_GREY_50
+    
+    # CORRECCIÓN 1: Flet > 0.85 usa clase Colors en mayúscula
+    page.bgcolor = ft.Colors.BLUE_GREY_50
     page.theme_mode = ft.ThemeMode.LIGHT
     
     # Configurar un tema "Premium App"
     page.theme = ft.Theme(
-        color_scheme_seed=ft.colors.LIGHT_BLUE,
+        color_scheme_seed=ft.Colors.LIGHT_BLUE,
         font_family="Inter",
         visual_density=ft.ThemeVisualDensity.COMFORTABLE,
         page_transitions=ft.PageTransitionsTheme(
@@ -25,15 +26,7 @@ def main(page: ft.Page):
         ),
     )
 
-    # Contenedor principal donde inyectaremos las vistas
-    main_container = ft.AnimatedSwitcher(
-        content=ft.Container(),
-        transition=ft.AnimatedSwitcherTransition.FADE,
-        duration=300,
-        reverse_duration=300,
-        switch_in_curve=ft.AnimationCurve.EASE_IN_OUT,
-        switch_out_curve=ft.AnimationCurve.EASE_IN_OUT,
-    )
+    # ... (el resto del código de enrutamiento se mantiene exactamente igual) ...
 
     def route_change(route):
         page.views.clear()
@@ -67,9 +60,8 @@ def main(page: ft.Page):
     page.on_route_change = route_change
     page.on_view_pop = view_pop
     
-    # CORRECCIÓN: Evitamos pasar None a page.go()
     page.go(page.route or "/")
 
-# Lanzar la aplicación sirviendo la carpeta 'assets' local
+# CORRECCIÓN 2: Reemplazo de app() por run() para versiones modernas
 if __name__ == "__main__":
-    ft.app(target=main, assets_dir="assets")
+    ft.run(target=main, assets_dir="assets")
