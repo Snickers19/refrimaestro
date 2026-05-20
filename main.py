@@ -2,28 +2,37 @@ import flet as ft
 from views.home import HomeView
 from views.mantenimiento import MantenimientoView
 from views.contacto import ContactoView
-from guardados_views import FavoritosView, CotizacionesView
-
-# Paleta de colores globales
-BG_COLOR = "#0c0f14"
-CONTAINER_COLOR = "#141821"
-NAV_COLOR = "#18191b"
-COFFEE_COLOR = "#c29b76" # Un color café elegante
-TEXT_PRIMARY = "#f3f4f6"
-TEXT_SECONDARY = "#9ca3af"
 
 def main(page: ft.Page):
     # Configuración principal de la página
     page.title = "Refri Maestro | Reparaciones y Ventas"
-    page.favicon = "refrigerator-photos/Refrimaestro.png" 
     page.padding = 0
-    page.spacing = 0
-    page.bgcolor = BG_COLOR
+    # CORRECCIÓN: ft.colors en minúsculas
+    page.bgcolor = ft.colors.BLUE_GREY_50
+    page.theme_mode = ft.ThemeMode.LIGHT
     
     # Configurar un tema "Premium App"
     page.theme = ft.Theme(
-        scrollbar_theme=ft.ScrollbarTheme(thumb_color=COFFEE_COLOR),
+        color_scheme_seed=ft.colors.LIGHT_BLUE,
         font_family="Inter",
+        visual_density=ft.ThemeVisualDensity.COMFORTABLE,
+        page_transitions=ft.PageTransitionsTheme(
+            windows=ft.PageTransitionTheme.FADE_UPWARDS,
+            macos=ft.PageTransitionTheme.FADE_UPWARDS,
+            linux=ft.PageTransitionTheme.FADE_UPWARDS,
+            android=ft.PageTransitionTheme.FADE_UPWARDS,
+            ios=ft.PageTransitionTheme.FADE_UPWARDS,
+        ),
+    )
+
+    # Contenedor principal donde inyectaremos las vistas
+    main_container = ft.AnimatedSwitcher(
+        content=ft.Container(),
+        transition=ft.AnimatedSwitcherTransition.FADE,
+        duration=300,
+        reverse_duration=300,
+        switch_in_curve=ft.AnimationCurve.EASE_IN_OUT,
+        switch_out_curve=ft.AnimationCurve.EASE_IN_OUT,
     )
 
     def route_change(route):
@@ -36,24 +45,18 @@ def main(page: ft.Page):
             view_content = MantenimientoView(page)
         elif page.route == "/contacto":
             view_content = ContactoView(page)
-        elif page.route == "/favoritos":
-            view_content = FavoritosView(page)
-        elif page.route == "/cotizaciones":
-            view_content = CotizacionesView(page)
         else:
             view_content = HomeView(page)
             
-        if isinstance(view_content, ft.View):
-            page.views.append(view_content)
-        else:
-            page.views.append(
-                ft.View(
-                    route=page.route,
-                    controls=[view_content],
-                    padding=0,
-                    bgcolor=BG_COLOR,
-                )
+        page.views.append(
+            ft.View(
+                route=page.route,
+                controls=[view_content],
+                padding=0,
+                bgcolor=page.bgcolor,
+                scroll=ft.ScrollMode.AUTO,
             )
+        )
         page.update()
 
     def view_pop(view):
@@ -64,8 +67,8 @@ def main(page: ft.Page):
     page.on_route_change = route_change
     page.on_view_pop = view_pop
     
-    # Inicializar la ruta en la raíz
-    page.go(page.route)
+    # CORRECCIÓN: Evitamos pasar None a page.go()
+    page.go(page.route or "/")
 
 # Lanzar la aplicación sirviendo la carpeta 'assets' local
 if __name__ == "__main__":
