@@ -24,7 +24,7 @@ jobs:
           pip install flet
           
       - name: Build Web
-        run: flet build web
+        run: yes | flet build web
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
