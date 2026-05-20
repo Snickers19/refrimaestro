@@ -1,0 +1,11 @@
+127.0.0.1 - - [20/May/2026 13:38:21] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 13:38:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 13:41:58] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 13:41:58] "GET /_astro/index.DJ6cw7lI.css HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 13:41:58] "GET /assets/Refrimaestro.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 13:42:00] "GET /assets/refrigerator-photos/Daewoo-RF-420S.jpeg HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 13:42:00] "GET /assets/refrigerator-photos/Samsung-2.jpeg HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 13:44:21] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 13:44:21] "GET /_astro/index.DJ6cw7lI.css HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 13:44:47] "GET / HTTP/1.1" 304 -
+127.0.0.1 - - [20/May/2026 13:44:47] "GET /_astro/index.DJ6cw7lI.css HTTP/1.1" 304 -

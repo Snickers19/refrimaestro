@@ -7,7 +7,8 @@ venv/
 dist/
 build/
 storage/
+node_modules/
+.astro/
 .DS_Store
-
-# Local Netlify folder
 .netlify
+

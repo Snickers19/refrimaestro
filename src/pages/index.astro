@@ -1,0 +1,1001 @@
+---
+const products = [
+  {
+    id: "daewoo-rf420s",
+    name: "DAEWOO RF-420S",
+    price: "$178.200",
+    image: "/assets/refrigerator-photos/Daewoo-RF-420S.jpeg",
+    specs: ["No Frost", "312 L", "168 x 60 x 65 cm"],
+    description:
+      "Refrigerador No Frost con control electronico de temperatura, buena capacidad familiar y operacion eficiente.",
+  },
+  {
+    id: "samsung-rt46",
+    name: "SAMSUNG RT46K6631SL",
+    price: "$344.500",
+    image: "/assets/refrigerator-photos/Samsung-2.jpeg",
+    specs: ["Inverter", "452 L", "Twin Cooling Plus"],
+    description:
+      "Modelo Inverter con Twin Cooling Plus, Power Cool y freezer de gran capacidad para uso intensivo.",
+  },
+];
+
+const services = [
+  { id: "revision", name: "Visita tecnica / revision", price: 25000 },
+  { id: "carga-gas", name: "Recarga de gas refrigerante", price: 45000 },
+  { id: "termostato", name: "Cambio de termostato", price: 35000 },
+  { id: "limpieza", name: "Mantenimiento y limpieza profunda", price: 30000 },
+  { id: "compresor", name: "Cambio de compresor", price: 85000 },
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Venta de refrigeradores y servicio tecnico de refrigeracion en Chile. Cotiza mantenimiento, agenda revision y contacta a Refri Maestro."
+    />
+    <title>Refri Maestro | Refrigeradores y Servicio Tecnico</title>
+    <link rel="icon" type="image/png" href="/assets/Refrimaestro.png" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="topbar">
+        <a class="brand" href="#productos" aria-label="Refri Maestro">
+          <img src="/assets/Refrimaestro.png" alt="" />
+          <span>
+            <strong>Refri Maestro</strong>
+            <small>Venta y servicio tecnico</small>
+          </span>
+        </a>
+        <div class="contact-strip" aria-label="Contacto directo">
+          <a href="tel:+56973982493">+56 9 7398 2493</a>
+          <a href="mailto:ayuda.refrimaestro@gmail.com">ayuda.refrimaestro@gmail.com</a>
+        </div>
+      </div>
+      <nav class="nav-tabs" aria-label="Navegacion principal">
+        <a href="#productos">Productos</a>
+        <a href="#mantenimiento">Mantenimiento</a>
+        <a href="#cotizador">Cotizador</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="intro-title">
+        <div>
+          <p class="eyebrow">Refrigeracion domestica y comercial</p>
+          <h1 id="intro-title">Refri Maestro</h1>
+          <p>
+            Venta de refrigeradores seleccionados, diagnostico tecnico y
+            mantenimiento con valores claros antes de coordinar la visita.
+          </p>
+        </div>
+        <div class="quick-actions">
+          <a class="primary-link" href="https://wa.me/56973982493" target="_blank" rel="noreferrer">
+            WhatsApp
+          </a>
+          <a class="secondary-link" href="#cotizador">Cotizar servicio</a>
+        </div>
+      </section>
+
+      <section id="productos" class="section-shell" aria-labelledby="productos-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Catalogo disponible</p>
+            <h2 id="productos-title">Refrigeradores</h2>
+          </div>
+          <button class="ghost-button" type="button" data-open-saved>
+            Guardados <span data-saved-count>0</span>
+          </button>
+        </div>
+
+        <div class="product-grid">
+          {
+            products.map((product) => (
+              <article class="product-card" data-product-card data-product-id={product.id}>
+                <button
+                  class="save-button"
+                  type="button"
+                  aria-label={`Guardar ${product.name}`}
+                  data-save-product={product.id}
+                >
+                  <span aria-hidden="true">+</span>
+                </button>
+                <img src={product.image} alt={`Refrigerador ${product.name}`} loading="lazy" />
+                <div class="product-body">
+                  <div>
+                    <h3>{product.name}</h3>
+                    <p>{product.description}</p>
+                  </div>
+                  <ul class="spec-list" aria-label={`Caracteristicas de ${product.name}`}>
+                    {product.specs.map((spec) => <li>{spec}</li>)}
+                  </ul>
+                  <div class="card-footer">
+                    <strong>{product.price}</strong>
+                    <button
+                      class="text-button"
+                      type="button"
+                      data-open-product={product.id}
+                    >
+                      Ver detalle
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="mantenimiento" class="section-shell split" aria-labelledby="mantenimiento-title">
+        <div>
+          <p class="eyebrow">Servicio tecnico</p>
+          <h2 id="mantenimiento-title">Mantenimiento y reparacion</h2>
+          <p>
+            Revisamos fallas de frio, escarcha, termostatos, fugas, compresores
+            y rendimiento general. Los valores son referenciales y se confirman
+            tras la evaluacion tecnica.
+          </p>
+        </div>
+        <div class="price-table" role="table" aria-label="Valores referenciales">
+          <div role="row">
+            <strong role="cell">Consulta base</strong>
+            <span role="cell">$15.000</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Cambio de filtro</strong>
+            <span role="cell">$35.000</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Recarga de gas</strong>
+            <span role="cell">$45.000</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Revision de compresor</strong>
+            <span role="cell">Desde $30.000</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="cotizador" class="section-shell quote-panel" aria-labelledby="cotizador-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Presupuesto rapido</p>
+            <h2 id="cotizador-title">Cotizador de servicio</h2>
+          </div>
+          <output class="total-pill" data-total>$0</output>
+        </div>
+
+        <form class="quote-form" data-quote-form>
+          {
+            services.map((service) => (
+              <label class="service-row">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value={service.id}
+                  data-service-price={service.price}
+                  data-service-name={service.name}
+                />
+                <span>{service.name}</span>
+                <strong>{new Intl.NumberFormat("es-CL", {
+                  style: "currency",
+                  currency: "CLP",
+                  maximumFractionDigits: 0,
+                }).format(service.price)}</strong>
+              </label>
+            ))
+          }
+        </form>
+        <div class="quote-summary" data-quote-summary>
+          Selecciona servicios para calcular un total estimado.
+        </div>
+      </section>
+
+      <section id="contacto" class="section-shell contact-layout" aria-labelledby="contacto-title">
+        <div class="contact-card">
+          <p class="eyebrow">Contacto directo</p>
+          <h2 id="contacto-title">Agenda o consulta</h2>
+          <p>Respondemos por WhatsApp, correo o formulario.</p>
+          <a href="tel:+56973982493">+56 9 7398 2493</a>
+          <a href="mailto:ayuda.refrimaestro@gmail.com">ayuda.refrimaestro@gmail.com</a>
+          <p class="schedule">Lunes a viernes 09:30 - 18:00 - Sabado 10:00 - 14:00</p>
+        </div>
+
+        <form
+          class="contact-form"
+          name="contacto"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="contacto" />
+          <p class="hidden-field">
+            <label>No completar <input name="bot-field" /></label>
+          </p>
+          <label>
+            Nombre completo
+            <input name="nombre" autocomplete="name" required />
+          </label>
+          <label>
+            Correo electronico
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            Telefono
+            <input name="telefono" autocomplete="tel" />
+          </label>
+          <label>
+            Mensaje
+            <textarea name="mensaje" rows="5" required></textarea>
+          </label>
+          <button class="primary-button" type="submit" data-submit-btn>Enviar mensaje</button>
+
+          <!-- Feedback visible al usuario -->
+          <p class="form-feedback" data-form-feedback aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <dialog class="product-dialog" data-product-dialog>
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Cerrar">x</button>
+      <div data-dialog-content></div>
+    </dialog>
+
+    <footer class="footer">
+      <span>(c) 2026 Refri Maestro</span>
+      <span>Reparaciones y ventas en refrigeracion</span>
+    </footer>
+
+    <script type="application/json" id="products-data" set:html={JSON.stringify(products)} />
+
+    <script>
+      // ── Utilidades generales ────────────────────────────────────────────────────
+      const formatter = new Intl.NumberFormat("es-CL", {
+        style: "currency",
+        currency: "CLP",
+        maximumFractionDigits: 0,
+      });
+      const products = JSON.parse(document.getElementById("products-data").textContent || "[]");
+      const savedKey = "refri-maestro-saved";
+      const total = document.querySelector("[data-total]");
+      const quoteSummary = document.querySelector("[data-quote-summary]");
+      const savedCount = document.querySelector("[data-saved-count]");
+      const dialog = document.querySelector("[data-product-dialog]");
+      const dialogContent = document.querySelector("[data-dialog-content]");
+
+      // ── Productos guardados ─────────────────────────────────────────────────────
+      function getSaved() {
+        return JSON.parse(localStorage.getItem(savedKey) || "[]");
+      }
+
+      function setSaved(saved) {
+        localStorage.setItem(savedKey, JSON.stringify(saved));
+        updateSavedButtons();
+      }
+
+      function updateSavedButtons() {
+        const saved = getSaved();
+        savedCount.textContent = String(saved.length);
+        document.querySelectorAll("[data-save-product]").forEach((button) => {
+          const active = saved.includes(button.dataset.saveProduct);
+          button.classList.toggle("is-saved", active);
+          button.querySelector("span").textContent = active ? "*" : "+";
+        });
+      }
+
+      function openProduct(id) {
+        const product = products.find((item) => item.id === id);
+        if (!product) return;
+        dialogContent.innerHTML = `
+          <img src="${product.image}" alt="Refrigerador ${product.name}" />
+          <div>
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <ul>${product.specs.map((spec) => `<li>${spec}</li>`).join("")}</ul>
+            <strong>${product.price}</strong>
+            <a class="primary-link" href="https://wa.me/56973982493?text=${encodeURIComponent(`Hola, me interesa el refrigerador ${product.name}.`)}" target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
+          </div>
+        `;
+        dialog.showModal();
+      }
+
+      document.querySelectorAll("[data-save-product]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const saved = new Set(getSaved());
+          const id = button.dataset.saveProduct;
+          saved.has(id) ? saved.delete(id) : saved.add(id);
+          setSaved([...saved]);
+        });
+      });
+
+      document.querySelectorAll("[data-open-product]").forEach((button) => {
+        button.addEventListener("click", () => openProduct(button.dataset.openProduct));
+      });
+
+      document.querySelector("[data-open-saved]").addEventListener("click", () => {
+        const savedProducts = products.filter((product) => getSaved().includes(product.id));
+        dialogContent.innerHTML = savedProducts.length
+          ? `<h2>Productos guardados</h2>${savedProducts
+              .map(
+                (product) => `
+                  <article class="saved-item">
+                    <img src="${product.image}" alt="${product.name}" />
+                    <div><strong>${product.name}</strong><span>${product.price}</span></div>
+                  </article>`
+              )
+              .join("")}`
+          : "<h2>Productos guardados</h2><p>Aun no tienes productos guardados.</p>";
+        dialog.showModal();
+      });
+
+      document.querySelector("[data-close-dialog]").addEventListener("click", () => dialog.close());
+
+      // ── Cotizador ───────────────────────────────────────────────────────────────
+      document.querySelector("[data-quote-form]").addEventListener("change", () => {
+        const selected = [...document.querySelectorAll("[data-service-price]:checked")];
+        const sum = selected.reduce((acc, input) => acc + Number(input.dataset.servicePrice), 0);
+        total.textContent = formatter.format(sum);
+        quoteSummary.textContent = selected.length
+          ? `Servicios seleccionados: ${selected.map((input) => input.dataset.serviceName).join(", ")}. Total estimado: ${formatter.format(sum)}.`
+          : "Selecciona servicios para calcular un total estimado.";
+      });
+
+      updateSavedButtons();
+
+      // ── Webhook Pabbly Connect + Netlify Forms (dual dispatch) ──────────────────
+      //
+      //  INSTRUCCIONES:
+      //  1. Ve a connect.pabbly.com → New Workflow → Trigger: "Webhook by Pabbly"
+      //  2. Copia la URL que genera Pabbly (formato: https://connect.pabbly.com/workflow/sendwebhookdata/XXXXXX)
+      //  3. Pégala en la constante PABBLY_WEBHOOK_URL reemplazando el valor actual
+      //
+      const PABBLY_WEBHOOK_URL = "https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY4MDYzZjA0Mzc1MjZkNTUzNjUxMzMi_pc";
+
+      const contactForm   = document.querySelector(".contact-form");
+      const submitBtn     = document.querySelector("[data-submit-btn]");
+      const formFeedback  = document.querySelector("[data-form-feedback]");
+
+      contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Intercepta el submit antes de que Netlify lo procese
+
+        const formData = new FormData(contactForm);
+        const data     = Object.fromEntries(formData);
+
+        // ── Estado: cargando ──
+        submitBtn.disabled    = true;
+        submitBtn.textContent = "Enviando...";
+        formFeedback.textContent = "";
+        formFeedback.className   = "form-feedback";
+
+        // ── 1) Enviar a Pabbly Connect via JSON ──
+        try {
+          const pabblyResponse = await fetch(PABBLY_WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              nombre:    data.nombre    ?? "",
+              email:     data.email     ?? "",
+              telefono:  data.telefono  ?? "",
+              mensaje:   data.mensaje   ?? "",
+              fuente:    "refri-maestro-web",
+              timestamp: new Date().toISOString(),
+            }),
+          });
+
+          if (!pabblyResponse.ok) {
+            // Pabbly retornó un status de error (4xx / 5xx)
+            console.warn("Pabbly respondio con error:", pabblyResponse.status);
+          }
+        } catch (networkError) {
+          // Error de red (sin internet, CORS, etc.) — no bloqueamos el flujo principal
+          console.warn("Error de red al enviar a Pabbly:", networkError);
+        }
+
+        // ── 2) Enviar a Netlify Forms (submit nativo) ──
+        try {
+          const netlifyResponse = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString(),
+          });
+
+          if (netlifyResponse.ok) {
+            // Exito total
+            formFeedback.textContent = "✓ Mensaje enviado. Te responderemos pronto.";
+            formFeedback.classList.add("feedback-success");
+            contactForm.reset();
+          } else {
+            throw new Error(`Netlify status: ${netlifyResponse.status}`);
+          }
+        } catch (netlifyError) {
+          console.error("Error al enviar a Netlify:", netlifyError);
+          formFeedback.textContent = "Hubo un problema al enviar. Intenta por WhatsApp o correo.";
+          formFeedback.classList.add("feedback-error");
+        }
+
+        // ── Restaurar botón ──
+        submitBtn.disabled    = false;
+        submitBtn.textContent = "Enviar mensaje";
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0d1016;
+    --panel: #151923;
+    --panel-2: #1d2430;
+    --line: #2d3440;
+    --text: #f5f7fb;
+    --muted: #a7b0bd;
+    --accent: #d8a15f;
+    --accent-2: #60c3d7;
+    --danger: #ef767a;
+    --success: #4caf7d;
+    font-family:
+      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--line);
+    background: rgba(13, 16, 22, 0.94);
+    backdrop-filter: blur(16px);
+  }
+
+  .topbar,
+  .nav-tabs,
+  main,
+  .footer {
+    width: min(1160px, calc(100% - 32px));
+    margin-inline: auto;
+  }
+
+  .topbar {
+    display: flex;
+    min-height: 72px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand img {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .brand strong,
+  .brand small {
+    display: block;
+  }
+
+  .brand small,
+  .eyebrow,
+  .section-shell p,
+  .contact-card .schedule {
+    color: var(--muted);
+  }
+
+  .contact-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .contact-strip a,
+  .ghost-button {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--accent);
+    padding: 9px 12px;
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 0 12px;
+  }
+
+  .nav-tabs a {
+    flex: 0 0 auto;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--muted);
+  }
+
+  .nav-tabs a:hover,
+  .text-button:hover {
+    color: var(--text);
+    background: var(--panel-2);
+  }
+
+  main {
+    padding: 28px 0 44px;
+  }
+
+  .intro,
+  .section-shell {
+    border-bottom: 1px solid var(--line);
+    padding: 34px 0;
+  }
+
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: end;
+  }
+
+  .eyebrow {
+    margin: 0 0 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+    font-size: clamp(2.3rem, 6vw, 5rem);
+    line-height: 0.95;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+  }
+
+  h3 {
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+  }
+
+  .intro p {
+    max-width: 720px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.6;
+  }
+
+  .quick-actions,
+  .card-footer,
+  .section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .primary-link,
+  .primary-button,
+  .secondary-link,
+  .text-button,
+  .ghost-button,
+  .save-button,
+  .dialog-close {
+    cursor: pointer;
+  }
+
+  .primary-link,
+  .primary-button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #16110a;
+    font-weight: 800;
+    padding: 12px 16px;
+  }
+
+  .primary-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .secondary-link {
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--text);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  .product-card,
+  .contact-card,
+  .contact-form,
+  .quote-panel .quote-form,
+  .price-table {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+  }
+
+  .product-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+  }
+
+  .product-card > img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background: #080b10;
+  }
+
+  .product-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .product-body p {
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .save-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    background: rgba(13, 16, 22, 0.78);
+    color: var(--text);
+    font-size: 1.4rem;
+  }
+
+  .save-button.is-saved {
+    color: var(--accent);
+  }
+
+  .spec-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: auto 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .spec-list li {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--accent-2);
+    padding: 6px 9px;
+    font-size: 0.85rem;
+  }
+
+  .card-footer strong,
+  .price-table span,
+  .total-pill {
+    color: var(--accent);
+  }
+
+  .text-button {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    padding: 9px 12px;
+  }
+
+  .split,
+  .contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .price-table {
+    overflow: hidden;
+  }
+
+  .price-table div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .price-table div + div {
+    border-top: 1px solid var(--line);
+  }
+
+  .total-pill {
+    border-radius: 8px;
+    background: #241a11;
+    padding: 10px 14px;
+    font-weight: 900;
+  }
+
+  .quote-form {
+    display: grid;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    padding: 15px 16px;
+  }
+
+  .service-row + .service-row {
+    border-top: 1px solid var(--line);
+  }
+
+  .service-row input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+  }
+
+  .quote-summary {
+    margin-top: 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel-2);
+    color: var(--muted);
+    padding: 14px;
+    line-height: 1.55;
+  }
+
+  .contact-card,
+  .contact-form {
+    padding: 22px;
+  }
+
+  .contact-card a {
+    display: block;
+    width: fit-content;
+    margin-top: 12px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 14px;
+  }
+
+  .contact-form label {
+    display: grid;
+    gap: 7px;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #0b0e13;
+    color: var(--text);
+    padding: 12px;
+  }
+
+  .hidden-field {
+    display: none;
+  }
+
+  /* ── Feedback del formulario ─────────────────────────────────────────── */
+  .form-feedback {
+    margin: 0;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    min-height: 0;
+    display: none;
+  }
+
+  .form-feedback:not(:empty) {
+    display: block;
+  }
+
+  .form-feedback.feedback-success {
+    background: rgba(76, 175, 125, 0.12);
+    border: 1px solid var(--success);
+    color: var(--success);
+  }
+
+  .form-feedback.feedback-error {
+    background: rgba(239, 118, 122, 0.12);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+  }
+
+  /* ── Dialog ──────────────────────────────────────────────────────────── */
+  .product-dialog {
+    width: min(820px, calc(100% - 28px));
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--text);
+    padding: 0;
+  }
+
+  .product-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.66);
+  }
+
+  .dialog-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(13, 16, 22, 0.82);
+    color: var(--text);
+    font-size: 1.5rem;
+  }
+
+  [data-dialog-content] {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 20px;
+    padding: 20px;
+  }
+
+  [data-dialog-content] > img {
+    width: 100%;
+    height: 100%;
+    max-height: 420px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  [data-dialog-content] ul {
+    color: var(--muted);
+  }
+
+  [data-dialog-content] strong {
+    display: block;
+    margin: 18px 0;
+    color: var(--accent);
+    font-size: 1.4rem;
+  }
+
+  .saved-item {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 12px;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    padding: 12px 0;
+  }
+
+  .saved-item img {
+    width: 72px;
+    height: 72px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .saved-item span {
+    display: block;
+    color: var(--accent);
+    margin-top: 4px;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    padding: 24px 0 34px;
+  }
+
+  @media (max-width: 780px) {
+    .topbar,
+    .intro,
+    .section-heading,
+    .quick-actions,
+    .split,
+    .contact-layout,
+    [data-dialog-content],
+    .footer {
+      grid-template-columns: 1fr;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .contact-strip {
+      justify-content: flex-start;
+    }
+
+    .intro {
+      display: grid;
+    }
+
+    .section-heading,
+    .quick-actions,
+    .footer {
+      display: flex;
+    }
+
+    .service-row {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .service-row strong {
+      grid-column: 2;
+    }
+  }
+</style>
