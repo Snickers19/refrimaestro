@@ -16,7 +16,7 @@ def main(page: ft.Page):
     page.theme = ft.Theme(
         color_scheme_seed=ft.Colors.LIGHT_BLUE,
         font_family="Inter",
-        visual_density=ft.ThemeVisualDensity.COMFORTABLE,
+        visual_density=ft.VisualDensity.COMFORTABLE,
         page_transitions=ft.PageTransitionsTheme(
             windows=ft.PageTransitionTheme.FADE_UPWARDS,
             macos=ft.PageTransitionTheme.FADE_UPWARDS,
@@ -64,4 +64,4 @@ def main(page: ft.Page):
 
 # CORRECCIÓN 2: Reemplazo de app() por run() para versiones modernas
 if __name__ == "__main__":
-    ft.run(main, assets_dir="assets")
+    ft.app(target=main, assets_dir="assets")
