@@ -64,4 +64,4 @@ def main(page: ft.Page):
 
 # CORRECCIÓN 2: Reemplazo de app() por run() para versiones modernas
 if __name__ == "__main__":
-    ft.run(target=main, assets_dir="assets")
+    ft.run(main, assets_dir="assets")
