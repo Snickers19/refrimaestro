@@ -4,15 +4,11 @@ from views.mantenimiento import MantenimientoView
 from views.contacto import ContactoView
 
 def main(page: ft.Page):
-    # Configuración principal de la página
     page.title = "Refri Maestro | Reparaciones y Ventas"
     page.padding = 0
-    
-    # CORRECCIÓN 1: Flet > 0.85 usa clase Colors en mayúscula
     page.bgcolor = ft.Colors.BLUE_GREY_50
     page.theme_mode = ft.ThemeMode.LIGHT
-    
-    # Configurar un tema "Premium App"
+
     page.theme = ft.Theme(
         color_scheme_seed=ft.Colors.LIGHT_BLUE,
         font_family="Inter",
@@ -26,12 +22,8 @@ def main(page: ft.Page):
         ),
     )
 
-    # ... (el resto del código de enrutamiento se mantiene exactamente igual) ...
-
     def route_change(route):
         page.views.clear()
-        
-        # Enrutamiento tipo aplicación
         if page.route == "/":
             view_content = HomeView(page)
         elif page.route == "/mantenimiento":
@@ -40,7 +32,6 @@ def main(page: ft.Page):
             view_content = ContactoView(page)
         else:
             view_content = HomeView(page)
-            
         page.views.append(
             ft.View(
                 route=page.route,
@@ -59,9 +50,7 @@ def main(page: ft.Page):
 
     page.on_route_change = route_change
     page.on_view_pop = view_pop
-    
     page.go(page.route or "/")
 
-# CORRECCIÓN 2: Reemplazo de app() por run() para versiones modernas
 if __name__ == "__main__":
-    ft.app(target=main, assets_dir="assets")
+    ft.run(main, assets_dir="assets")
